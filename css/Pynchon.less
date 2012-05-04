@@ -3,7 +3,13 @@
 1. First Eric Meyer's Reset is applied to zero out all the default styles.
 2. Text Variables Defines how the text will be displayed.
 3. Text Styles
+
+The approach is based on the following influences:
+Grid Systems
+Tightly based headers (for h2 & h3), based on Robin Williams recommendations. (Cross referenced with well typeset magazines like the Economist, The New Yorker, and Wired.)
+Creating a vertical rhythm
 ============================================================================*/
+
 
 
 /* Eric Meyer's Reset
@@ -85,33 +91,38 @@ blockquote, q {
 }
 
 
-/* Text Variables
+/* Text
 ============================================================================*/
+/* Configuration
+----------------------------------------------------------------------------*/
 @gridSize: 19px;
 @bodyFontSize: 14px;
-@headerFontSize: 24px;
-@subHeaderFontSize: 18px;
+@headerFontSize: 36px;
+@subHeaderFontSize: 21px;
 @backgroundColor: rgba(245, 243, 228, 1);
 @font: "ff-meta-serif-web-pro-1", "ff-meta-serif-web-pro-2", "Meta Serif Pro", Georgia, Serif;
 
 
-/* Page Spacing
+/* Text Spacing
 ============================================================================*/
+/* Headers & Body
+----------------------------------------------------------------------------*/
 body {
 	margin: @gridSize * 2;
-	font-family: @font;
-	background-color: @backgroundColor;
 }
-
-/* Text Styles
-============================================================================*/
 body, h3 {
     font-size: @bodyFontSize;
     line-height: @gridSize;
 }
 h1 {
+  	font-size: @headerFontSize;
+  	line-height: @gridSize * 2;
    	margin-bottom: @gridSize;
   	margin-top: @gridSize * 2;
+}
+h2 {
+  	font-size: @subHeaderFontSize;
+  	line-height: @gridSize * 2;
 }
 h2, h3 {
   	margin-top: @gridSize;
@@ -119,31 +130,35 @@ h2, h3 {
 p + p {
 	text-indent: @gridSize;
 }
-h1 {
-  	font-size: @headerFontSize;
-  	line-height: @gridSize * 2;
+/* Other Elements
+----------------------------------------------------------------------------*/
+pre, blockquote {
+	margin: @gridSize;
 }
-h2 {
-  	font-size: @subHeaderFontSize;
-  	line-height: @gridSize;
+li ul, li ol {
+	margin-left: @gridSize;
 }
+
+
+/* Styles
+============================================================================*/
+/* Body
+----------------------------------------------------------------------------*/
+body {
+	font-family: @font;
+	background-color: @backgroundColor;
+}
+/* Lists
+----------------------------------------------------------------------------*/
 ul {
 	list-style-type: disc;
 }
 ol {
 	list-style-type: decimal;
 }
-li ul, li ol {
-	margin-left: @gridSize;
-}
 ul, ol {
 	list-style-position: outside;
 }
-blockquote {
-	margin: 0 @gridSize;
-}
-
-
 /* Horizontal Rule
 ----------------------------------------------------------------------------*/
 hr {

@@ -3,6 +3,11 @@
 1. First Eric Meyer's Reset is applied to zero out all the default styles.
 2. Text Variables Defines how the text will be displayed.
 3. Text Styles
+
+The approach is based on the following influences:
+Grid Systems
+Tightly based headers (for h2 & h3), based on Robin Williams recommendations. (Cross referenced with well typeset magazines like the Economist, The New Yorker, and Wired.)
+Creating a vertical rhythm
 ============================================================================*/
 /* Eric Meyer's Reset
 ============================================================================*/
@@ -134,24 +139,30 @@ q:after {
 blockquote, q {
   quotes: "" "";
 }
-/* Text Variables
+/* Text
 ============================================================================*/
-/* Page Spacing
+/* Configuration
+----------------------------------------------------------------------------*/
+/* Text Spacing
 ============================================================================*/
+/* Headers & Body
+----------------------------------------------------------------------------*/
 body {
   margin: 38px;
-  font-family: "ff-meta-serif-web-pro-1", "ff-meta-serif-web-pro-2", "Meta Serif Pro", Georgia, Serif;
-  background-color: #f5f3e4;
 }
-/* Text Styles
-============================================================================*/
 body, h3 {
   font-size: 14px;
   line-height: 19px;
 }
 h1 {
+  font-size: 36px;
+  line-height: 38px;
   margin-bottom: 19px;
   margin-top: 38px;
+}
+h2 {
+  font-size: 21px;
+  line-height: 38px;
 }
 h2, h3 {
   margin-top: 19px;
@@ -159,28 +170,32 @@ h2, h3 {
 p + p {
   text-indent: 19px;
 }
-h1 {
-  font-size: 24px;
-  line-height: 38px;
+/* Other Elements
+----------------------------------------------------------------------------*/
+pre, blockquote {
+  margin: 19px;
 }
-h2 {
-  font-size: 18px;
-  line-height: 19px;
+li ul, li ol {
+  margin-left: 19px;
 }
+/* Styles
+============================================================================*/
+/* Body
+----------------------------------------------------------------------------*/
+body {
+  font-family: "ff-meta-serif-web-pro-1", "ff-meta-serif-web-pro-2", "Meta Serif Pro", Georgia, Serif;
+  background-color: #f5f3e4;
+}
+/* Lists
+----------------------------------------------------------------------------*/
 ul {
   list-style-type: disc;
 }
 ol {
   list-style-type: decimal;
 }
-li ul, li ol {
-  margin-left: 19px;
-}
 ul, ol {
   list-style-position: outside;
-}
-blockquote {
-  margin: 0 19px;
 }
 /* Horizontal Rule
 ----------------------------------------------------------------------------*/
