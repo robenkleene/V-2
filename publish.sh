@@ -1,0 +1,1 @@
+cp ./css/Pynchon.css ~/Library/Application\ Support/Marked/Custom\ CSS/
