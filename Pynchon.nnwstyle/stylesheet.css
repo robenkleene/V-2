@@ -34,7 +34,7 @@ iframe[src*="plusone.google"] {
 
 a[href*=".ads."],
 a[href*="feedads"],
-a[href*="feedburner"],
+/* a[href*="feedburner"], Commented out because it removed a hide a link in a post unnecessarily. */
 a[href*="doubleclick"],
 a[href*="//ads."],
 a[href*="api.tweetmeme"],

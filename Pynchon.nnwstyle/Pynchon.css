@@ -1,5 +1,10 @@
-/* Table of Contents
-==============================================================================
+/* Pynchon v1.0 ==============================================================================
+A stylesheet to layout HTML in a typographic grid. This stylesheet should be accompanied by a read me that contains more information.
+By Roben Kleene
+1percenter.com
+
+Table of Contents
+=================
 1. Eric Meyer's Reset: Removes all default browser styles.
 2. Grid: Applies a typographic grid.
 3. Cosmetics: Font, color and other subjective choices.
@@ -169,7 +174,7 @@ p + p {
   text-indent: 19px;
 }
 div {
-  margin: 19px 0;
+  margin-top: 19px;
 }
 /* Other Elements
 ----------------------------------------------------------------------------*/

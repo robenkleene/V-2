@@ -16,6 +16,10 @@ Joe Clark
 I'm convinced most web typography improperly leaves to much bottom margin under subheadings (titles, typically reserved for H1, leave much more room). 
 
 
+# Philosophy
+
+It is completely unforgiving about poorly marked up HTML.
+
 
 # Marked Style
 
