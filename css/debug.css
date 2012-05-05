@@ -1,5 +1,7 @@
 #grid_debug {
     background: transparent url('../images/grid/grid19.gif');
+	margin: 0;
+	padding: 0;
 	position: absolute;
 	z-index: 10000;
 	width: 100%;
@@ -10,7 +12,4 @@
 	top: 0;
 	right: 0;
 	bottom: 0;
-}
-.debug_borders, .debug_borders td, .debug_borders th {
-	border: 1px solid #888;
 }

@@ -2,3 +2,29 @@
 
 Enforces a typographic grid.
 
+The approach is based on the following influences:
+Grid Systems
+Tightly based headers (for h2 & h3), based on Robin Williams recommendations. (Cross referenced with well typeset magazines like the Economist, The New Yorker, and Wired.)
+Creating a vertical rhythm
+Hanging punctuation
+
+Font hierarchy from XXX
+
+Joe Clark 
+
+
+I'm convinced most web typography improperly leaves to much bottom margin under subheadings (titles, typically reserved for H1, leave much more room). 
+
+
+
+# Marked Style
+
+Completely successful
+
+
+# NetNewsWire Style
+
+For example:
+
+http://blog.penelopetrunk.com/2012/05/04/what-we-can-learn-from-the-lies-people-tell/?utm_source=feedburner&utm_medium=feed&utm_campaign=Feed%3A+BrazenCareerist+%28Penelope+Trunk%29
+
