@@ -44,26 +44,25 @@ usage () {
 	echo "     Do all of the above"
 }
 
+
+# Test All Conditions for the script to run #
+## At Least 1 Argument ##
 if [ $# -eq 0 ] ; then
 	usage
     exit 0
 fi
-
-# Test we can find the SOURCE_CSS_FILE
+## We can find the SOURCE_CSS_FILE ##
 if [ ! -f "$SOURCE_CSS_FILE" ]; then
 	echo "Error: $SOURCE_CSS_FILE does not exist. This script should be run from the $PRODUCT_TITLE root."
 	usage
 	exit 1
 fi
-
-# Test if we can find the PRODUCTS_DESTINATION
+## We can find the PRODUCTS_DESTINATION ##
 if [ ! -d "$PRODUCTS_DESTINATION" ]; then
 	echo "Error: $PRODUCTS_DESTINATION does not exist. This script should be run from the $PRODUCT_TITLE root."
 	usage
 	exit 1
 fi
-
-
 
 while getopts ":pmnba" option; do
 	case $option in
@@ -90,37 +89,37 @@ done
 if $PRODUCTS_FLAG ; then
 	# We already tested the existence of the PRODUCTS_DIRECTORY above
 	echo "Copying $PRODUCTS_MESSAGE"
+	cp $SOURCE_CSS_FILE $PRODUCTS_DESTINATION	
+	if [ -d "$PRODUCT_NNW_STYLE" ]; then
+		cp $SOURCE_CSS_FILE $PRODUCT_NNW_STYLE
+	else
+		echo "Skipping $PRODUCT_NNW_STYLE because it doesn't exist."
+	fi
 fi
 
 if $MARKED_FLAG ; then
-	echo "Copying $MARKED_MESSAGE"
+	if [ -d "$MARKED_DESTINATION" ]; then
+		echo "Copying $MARKED_MESSAGE"
+		cp $PRODUCT_STYLESHEET "$MARKED_DESTINATION"
+	else
+		echo "Skipping $MARKED_MESSAGE because it doesn't exist."
+	fi
 fi
 
 if $NNW_FLAG ; then
-	echo "Copying $NNW_MESSAGE"
+	if [ -d "$NNW_DESTINATION" ]; then
+		echo "Copying $NNW_MESSAGE"
+		cp -R $PRODUCT_NNW_STYLE "$NNW_DESTINATION"
+	else
+		echo "Skipping $NNW_DESTINATION because it doesn't exist."
+	fi
 fi
 
 if $BBEDIT_FLAG ; then
-	echo "Copying $BBEDIT_MESSAGE"
+	if [ -d "$BBEDIT_DESTINATION" ]; then
+		echo "Copying $BBEDIT_MESSAGE"
+		cp $PRODUCT_STYLESHEET "$BBEDIT_DESTINATION"
+	else
+		echo "Skipping $BBEDIT_DESTINATION because it doesn't exist."
+	fi
 fi
-
-
-
-
-
-# Copy the SOURCE_CSS_FILE into the OUTPUT_DESTINATION
-# if [ -d "$OUTPUT_DESTINATION" ]; then
-# 	echo "Copying $SOURCE_CSS_FILE into $OUTPUT_DESTINATION"
-# 	cp $SOURCE_CSS_FILE $OUTPUT_DESTINATION
-# else
-# 	echo "$OUTPUT_DESTINATION directory does not exist. Aborting"
-# fi
-
-
-
-
-
-# cp ./css/Pynchon.css ~/Library/Application\ Support/Marked/Custom\ CSS/
-# cp ./css/Pynchon.css ~/Library/Application\ Support/BBEdit/Preview\ CSS/
-# cp ./css/Pynchon.css ./Pynchon.nnwstyle/
-# cp -R ./Pynchon.nnwstyle ~/Library/Application\ Support/NetNewsWire/StyleSheets/
