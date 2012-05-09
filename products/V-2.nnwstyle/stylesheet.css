@@ -1,5 +1,8 @@
-@import "Pynchon.css";
+@import "V-2.css";
 
+body {
+	background: #FBFAF5 url('background.png') repeat top left
+}
 h1#title {
 	clear: both;
 }
@@ -16,6 +19,10 @@ h1#title a {
 #dateline a {
 	color: #999;
 }
+#dateline img {
+	margin: 0;
+}
+
 .newsItemDate, .newsItemSubject {
 	display: none;
 }

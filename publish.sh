@@ -2,7 +2,7 @@
 
 # Configuration #
 ## Standard Destinations ##
-PRODUCT_TITLE=Pynchon
+PRODUCT_TITLE=V-2
 STYLESHEET_NAME=$PRODUCT_TITLE.css
 SOURCE_CSS_FILE=./css/$STYLESHEET_NAME
 PRODUCTS_DESTINATION=./products/
