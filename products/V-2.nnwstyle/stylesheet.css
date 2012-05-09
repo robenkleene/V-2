@@ -1,8 +1,5 @@
 @import "V-2.css";
 
-body {
-	background: #FBFAF5 url('background.png') repeat top left
-}
 h1#title {
 	clear: both;
 }

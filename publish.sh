@@ -4,19 +4,22 @@
 ## Standard Destinations ##
 PRODUCT_TITLE=V-2
 STYLESHEET_NAME=$PRODUCT_TITLE.css
+IMAGE_NAME=$PRODUCT_TITLE.png
 SOURCE_CSS_FILE=./css/$STYLESHEET_NAME
+SOURCE_IMAGE_FILE=./css/$IMAGE_NAME
 PRODUCTS_DESTINATION=./products/
 PRODUCT_NNW_STYLE=$PRODUCTS_DESTINATION$PRODUCT_TITLE.nnwstyle
 PRODUCT_STYLESHEET=$PRODUCTS_DESTINATION$STYLESHEET_NAME
+PRODUCT_IMAGE=$PRODUCTS_DESTINATION$IMAGE_NAME
 ## Custom Application Installation ##
 MARKED_DESTINATION=~/Library/Application\ Support/Marked/Custom\ CSS/
 BBEDIT_DESTINATION=~/Library/Application\ Support/BBEdit/Preview\ CSS/
 NNW_DESTINATION=~/Library/Application\ Support/NetNewsWire/StyleSheets/
 ## Messages
-PRODUCTS_MESSAGE="$SOURCE_CSS_FILE into $PRODUCTS_DESTINATION and $PRODUCT_NNW_STYLE"
-MARKED_MESSAGE="$PRODUCT_STYLESHEET into $MARKED_DESTINATION"
+PRODUCTS_MESSAGE="$SOURCE_CSS_FILE & $SOURCE_IMAGE_FILE into $PRODUCTS_DESTINATION & $PRODUCT_NNW_STYLE"
+MARKED_MESSAGE="$PRODUCT_STYLESHEET & $SOURCE_IMAGE_FILE into $MARKED_DESTINATION"
 NNW_MESSAGE="$PRODUCT_NNW_STYLE into $NNW_DESTINATION"
-BBEDIT_MESSAGE="$PRODUCT_STYLESHEET into $BBEDIT_DESTINATION"
+BBEDIT_MESSAGE="$PRODUCT_STYLESHEET & $SOURCE_IMAGE_FILE into $BBEDIT_DESTINATION"
 ## Flags
 PRODUCTS_FLAG=false
 MARKED_FLAG=false
@@ -57,6 +60,12 @@ if [ ! -f "$SOURCE_CSS_FILE" ]; then
 	usage
 	exit 1
 fi
+## We can find the SOURCE_IMAGE_FILE ##
+if [ ! -f "$SOURCE_IMAGE_FILE" ]; then
+	echo "Error: $SOURCE_IMAGE_FILE does not exist. This script should be run from the $PRODUCT_TITLE root."
+	usage
+	exit 1
+fi
 ## We can find the PRODUCTS_DESTINATION ##
 if [ ! -d "$PRODUCTS_DESTINATION" ]; then
 	echo "Error: $PRODUCTS_DESTINATION does not exist. This script should be run from the $PRODUCT_TITLE root."
@@ -86,29 +95,30 @@ while getopts ":pmnba" option; do
 	esac
 done
 
+function copyStyleSheetProductsToDirectory {
+	if [ -d "$1" ]; then
+ 		cp $SOURCE_CSS_FILE "$1"
+ 		cp $SOURCE_IMAGE_FILE "$1"
+	else
+		echo "Skipping $1 because it doesn't exist."
+	fi
+}
+
 if $PRODUCTS_FLAG ; then
 	# We already tested the existence of the PRODUCTS_DIRECTORY above
 	echo "Copying $PRODUCTS_MESSAGE"
-	cp $SOURCE_CSS_FILE $PRODUCTS_DESTINATION	
-	if [ -d "$PRODUCT_NNW_STYLE" ]; then
-		cp $SOURCE_CSS_FILE $PRODUCT_NNW_STYLE
-	else
-		echo "Skipping $PRODUCT_NNW_STYLE because it doesn't exist."
-	fi
+	copyStyleSheetProductsToDirectory "$PRODUCTS_DESTINATION"
+	copyStyleSheetProductsToDirectory "$PRODUCT_NNW_STYLE"
 fi
 
 if $MARKED_FLAG ; then
-	if [ -d "$MARKED_DESTINATION" ]; then
-		echo "Copying $MARKED_MESSAGE"
-		cp $PRODUCT_STYLESHEET "$MARKED_DESTINATION"
-	else
-		echo "Skipping $MARKED_MESSAGE because it doesn't exist."
-	fi
+	echo "Copying $MARKED_MESSAGE"
+	copyStyleSheetProductsToDirectory "$MARKED_DESTINATION"
 fi
 
 if $NNW_FLAG ; then
+	echo "Copying $NNW_MESSAGE"
 	if [ -d "$NNW_DESTINATION" ]; then
-		echo "Copying $NNW_MESSAGE"
 		cp -R $PRODUCT_NNW_STYLE "$NNW_DESTINATION"
 	else
 		echo "Skipping $NNW_DESTINATION because it doesn't exist."
@@ -116,10 +126,6 @@ if $NNW_FLAG ; then
 fi
 
 if $BBEDIT_FLAG ; then
-	if [ -d "$BBEDIT_DESTINATION" ]; then
-		echo "Copying $BBEDIT_MESSAGE"
-		cp $PRODUCT_STYLESHEET "$BBEDIT_DESTINATION"
-	else
-		echo "Skipping $BBEDIT_DESTINATION because it doesn't exist."
-	fi
+	echo "Copying $BBEDIT_MESSAGE"
+	copyStyleSheetProductsToDirectory "$BBEDIT_DESTINATION"
 fi
